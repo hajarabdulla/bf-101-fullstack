@@ -34,7 +34,7 @@ app.get("/users", (req, res) => {
 //! Get user by id
 app.get("/users/:id", (req, res) => {
   const id = +req.params.id;
-  const user = users.find((u) => u.id === idCounter);
+  const user = users.find((u) => u.id === id);
   if (!user) {
     return res.json({
       success: false,
@@ -51,7 +51,7 @@ app.get("/users/:id", (req, res) => {
 app.post("/users", (req, res) => {
   const id = uuiddv4();
 
-  const newUser = { ...req.body, id: id };
+  const newUser = { ...req.body, id: idCounter++ };
   users = [...users, newUser];
 
   res.json({
